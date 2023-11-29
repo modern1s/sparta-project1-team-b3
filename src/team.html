@@ -1,11 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>팀 소개</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100dvh;
+      }
+      .wrapper {
+        padding: 0;
+        width: fit-content;
+        background: coral;
+        padding: 3rem;
+        border-radius: 1rem;
+      }
+      .back-botton {
+        margin-bottom: 0.5rem;
+      }
+      .teamcard {
+        margin: auto;
+      }
+    </style>
+    <style>
+      body {
+        background-color: #eaeaea;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <button
+          onclick="history.back()"
+          class="btn btn-light back-botton"
+          type="button"
+        >
+          뒤로가기
+        </button>
+        <div class="card teamcard" style="width: 50rem">
+          <img src="./img/zep_3ip.png" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <h1 class="card-title">3 IP</h1>
+            <h5 class="card-title">팀명이 만들어지게 된 배경</h5>
+            <p class="card-text">
+              권순형(INTP), 박상민(INFP), 이동욱(ISTP) 모두
+              <span style="color: red">I</span>**<span style="color: red"
+                >P</span
+              >를 가지고 있고 컴퓨터 용어인 IP의 중의적 의미로 한 조가 되어
+              네트워크가 되었다고 생각하여 "3 IP"라고 지었답니다~!
+            </p>
+            <h5 class="card-title">우리 팀 규칙</h5>
+            <p class="card-text">- 12시간을 집중해서 공부하자.</p>
+            <p class="card-text">
+              - 모르는 것이 있거나 막히면 주저없이 이야기 나누기.
+            </p>
+            <p class="card-text">- 서로 존중하며 싸우지 말자.</p>
+            <p class="card-text">- TIL을 하루의 마무리로!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
