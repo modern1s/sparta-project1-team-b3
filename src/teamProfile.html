@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>팀원소개</title>
@@ -10,20 +11,92 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+    <script type="module">
+      // Firebase SDK 라이브러리 가져오기
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+      import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+      import {
+        collection,
+        addDoc,
+      } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+      import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyAkWjDR_nBzEwg-aRAQjakEjegVql-DEXI",
+        authDomain: "threeip-e924f.firebaseapp.com",
+        projectId: "threeip-e924f",
+        storageBucket: "threeip-e924f.appspot.com",
+        messagingSenderId: "895717535727",
+        appId: "1:895717535727:web:0abc0e0da852698189901a",
+      };
+
+      // Firebase 인스턴스 초기화
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      let docs = await getDocs(collection(db, "teammate"));
+      docs.forEach((doc) => {
+        console.log("데이터 받아옴");
+        console.log(doc);
+        let row = doc.data();
+        const url = new URL(window.location.href);
+        let urlParams = url.searchParams;
+        console.log(typeof doc.id);
+        console.log(doc.id + " == " + urlParams.get("id"));
+        console.log(doc.id == urlParams.get("id"));
+        if (doc.id == urlParams.get("id")) {
+          let name = row["name"];
+          let imageURL = row["imageURL"];
+          let mbti = row["mbti"];
+          let workStyle = row["workStyle"];
+          let pros = row["pros"];
+          let motto = row["motto"];
+          let promise = row["promise"];
+          let blogURL = row["blogURL"];
+          let temp_html = `
+        <div class="row g-0">
+          <div class="col-md-4">
+            <a href="./index.html" class="btn btn-secondary">뒤로가기</a>
+            <div class="card-img-wrapper">
+              <img
+                src="${imageURL}"
+                class="img-fluid rounded-start card-img-top"
+                alt="..."
+              />
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h1 class="card-title">${name}</h1>
+              <p class="card-text">MBTI : ${mbti}</p>
+              <p class="card-text">협업스타일 : ${workStyle}</p>
+              <p class="card-text">장점 : ${pros} </p>
+              <p class="card-text">좌우명 : ${motto} </p>
+              <p class="card-text">이번 캠프에서의 다짐 : ${promise} </p>
+              <a href="${blogURL}" class="btn btn-secondary">블로그 들어가기</a>
+            </div>
+        </div>`;
+          $("#teammateinfo").append(temp_html);
+        }
+      });
+    </script>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic&display=swap');
-      *{font-family: 'Do Hyeon', sans-serif;}
-          body {
-            background-color: #eaeaea;
-          }
-      .selfintr{
+      @import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic&display=swap");
+      * {
+        font-family: "Do Hyeon", sans-serif;
+      }
+      body {
+        background-color: #eaeaea;
+      }
+      .selfintr {
         display: flex;
         justify-content: center;
         align-items: center;
         min-height: 100dvh;
         margin: auto auto;
       }
-      .card-body{
+      .card-body {
         width: 340px;
         height: 295px;
         text-align: center;
@@ -34,32 +107,22 @@
         border-radius: 8px;
       }
       a.btn-secondary {
-      margin: 10px;
+        margin: 10px;
+      }
+      .card-img-wrapper {
+        width: 266px;
+        height: 333px;
+        overflow: hidden;
+        margin: 0 auto;
+      }
+      .card-img-top {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     </style>
   </head>
   <body>
-    <div class="selfintr" style="max-width: 800px">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <a href="./index.html" class="btn btn-secondary">뒤로가기</a>
-          <img
-            src="./img/KakaoTalk_20231128_174504390.jpg"
-            class="img-fluid rounded-start"
-            alt="..."
-          />
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h1 class="card-title">권순형</h1>
-            <p class="card-text">MBTI : INTP</p>
-            <p class="card-text">협업스타일 : 조용하게 팀원들의 이야기를 들어주는 스타일입니다.</p>
-            <p class="card-text">장점 : 최선을 다하여 팀에 누가 되지않도록 노력한다. </p>
-            <p class="card-text">좌우명 : 기분이 태도가 되어서는 안된다 </p>
-            <p class="card-text">이번 캠프에서의 다짐 : 능동적인 팀원이 되자 </p>
-            <a href="https://velog.io/@moder1s" class="btn btn-secondary">블로그 들어가기</a>
-          </div>
-      </div>
-    </div>
+    <div id="teammateinfo" class="selfintr" style="max-width: 800px"></div>
   </body>
 </html>
