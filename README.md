@@ -1,4 +1,4 @@
-![image](https://github.com/modern1s/sparta-project1-team-b3/assets/84966961/4e48a9b0-8465-43e5-b033-2fbb88970df8)# 3(Three) IP - miniproject
+# 3(Three) IP - miniproject
 ![image](https://github.com/modern1s/sparta-project1-team-b3/assets/84966961/ebee5986-2875-4f0e-9bc1-6db7d60418d9)
 
 HTML, CSS, JS를 이용한 간단 팀원 소개 프로젝트 입니다.
